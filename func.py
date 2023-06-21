@@ -1,8 +1,8 @@
 import openai
-from bot_config import config
+import bot_config as config
 
 
-openai.api_key = config.gpt_key.get_secret_value()
+openai.api_key = config.gpt_key
 
 
 def inputgpt(content):
