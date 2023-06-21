@@ -4,6 +4,7 @@ import logging
 from aiogram import Bot, types
 from aiogram.dispatcher import Dispatcher
 from aiogram.utils import executor
+from aiogram.dispatcher.filters.builtin import CommandStart
 from openai import OpenAIError
 import bot_config as config
 
@@ -23,6 +24,13 @@ messages = [
         "content": "You are a programming assistant, helping users with Python programming with popular frameworks."
     }
 ]
+
+# Хэндлер на команду /start
+@dp.message_handler(CommandStart())
+async def start(message: types.Message):
+    sender_id = message.from_user.id
+    await message.answer("Привет, давай поболтаем с Chat-GPT")
+    print(sender_id)
 
 
 def update(messages, role, content):
