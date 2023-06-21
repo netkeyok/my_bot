@@ -160,3 +160,9 @@ cython_debug/
 #.idea/
 .sh
 env.sh
+.idea/misc.xml
+.idea/modules.xml
+.idea/my_bot.iml
+.idea/vcs.xml
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/.gitignore
