@@ -7,6 +7,7 @@ from aiogram.utils import executor
 from aiogram.dispatcher.filters.builtin import CommandStart
 from openai import OpenAIError
 import bot_config as config
+from func import update
 
 
 # настройка логирования
@@ -33,22 +34,9 @@ async def start(message: types.Message):
     print(sender_id)
 
 
-def update(messages, role, content):
-    """
-    Функция обновления списка сообщений
-    """
-    messages.append({"role": role, "content": content})
 
 
-def reset_messages():
-    """
-    Функция очистки истории сообщений контекста, чтобы избежать ошибки с токенами
-    """
-    messages.clear()
-    messages.append({
-        "role": "system",
-        "content": "You are a programming assistant, helping users with Python programming with popular frameworks."
-    })
+
 
 
 @dp.message_handler()

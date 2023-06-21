@@ -5,13 +5,19 @@ import bot_config as config
 openai.api_key = config.gpt_key
 
 
-def inputgpt(content):
-    messages = [{"role": "system", "content": "Ты сеньер Fullstack, python разработчик"},
-                {"role": "user", "content": content}]
-    completion = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
-        messages=messages)
+def update(messages, role, content):
+    """
+    Функция обновления списка сообщений
+    """
+    messages.append({"role": role, "content": content})
 
-    chat_response = completion.choices[0].message.content
-    messages.append({"role": "assistant", "content": chat_response})
-    return chat_response
+
+def reset_messages():
+    """
+    Функция очистки истории сообщений контекста, чтобы избежать ошибки с токенами
+    """
+    messages.clear()
+    messages.append({
+        "role": "system",
+        "content": "You are a programming assistant, helping users with Python programming with popular frameworks."
+    })
