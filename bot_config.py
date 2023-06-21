@@ -1,4 +1,8 @@
 from pydantic import BaseSettings, SecretStr
+from pathlib import Path
+
+
+env_path = Path('.') / '.env'
 
 
 class Settings(BaseSettings):
@@ -11,7 +15,7 @@ class Settings(BaseSettings):
     class Config:
         # Имя файла, откуда будут прочитаны данные
         # (относительно текущей рабочей директории)
-        env_file = '.env'
+        env_file = env_path
         # Кодировка читаемого файла
         env_file_encoding = 'utf-8'
 
