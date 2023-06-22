@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 
 openai.api_key = config.gpt_key
 
-bot = Bot(token=config.bot_token, parse_mode="MarkdownV2")
+bot = Bot(token=config.bot_token, parse_mode="Markdown")
 dp = Dispatcher(bot)
 
 messages = [
