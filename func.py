@@ -1,5 +1,6 @@
 import openai
 import bot_config as config
+from bot import messages
 
 
 openai.api_key = config.gpt_key
