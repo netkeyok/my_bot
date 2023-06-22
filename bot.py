@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 
 openai.api_key = config.gpt_key
 
-bot = Bot(token=config.bot_token)
+bot = Bot(token=config.bot_token, parse_mode="MarkdownV2")
 dp = Dispatcher(bot)
 
 messages = [
@@ -48,7 +48,7 @@ async def send(message: types.Message):
             model="gpt-3.5-turbo",
             messages=messages,
         )
-        await message.answer(response['choices'][0]['message']['content'], parse_mode="markdown")
+        await message.answer(response['choices'][0]['message']['content'])
     except OpenAIError as ex:
         await message.answer(ex.error)
 
