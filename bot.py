@@ -7,7 +7,7 @@ from aiogram.utils import executor
 from aiogram.dispatcher.filters.builtin import CommandStart
 from openai import OpenAIError
 import bot_config as config
-from func import update
+
 
 
 # настройка логирования
@@ -33,11 +33,11 @@ async def start(message: types.Message):
     await message.answer("Привет, давай поболтаем с Chat-GPT")
     print(sender_id)
 
-async def on_startup(dp):
-    # Отправляем сообщение о том, что бот запущен
-    await bot.send_message(chat_id=config.admin_id, text='Готов к труду!')
-
-
+def update(messages, role, content):
+    """
+    Функция обновления списка сообщений
+    """
+    messages.append({"role": role, "content": content})
 
 
 @dp.message_handler()
@@ -52,9 +52,6 @@ async def send(message: types.Message):
     except OpenAIError as ex:
         await message.answer(ex.error)
 
-
-# Регистрируем обработчик on_startup
-dp.register_event_handler(on_startup)
 
 if __name__ == '__main__':
     executor.start_polling(dp, skip_updates=True)
