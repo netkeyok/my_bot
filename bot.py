@@ -53,5 +53,9 @@ async def send(message: types.Message):
         await message.answer(ex.error)
 
 
+async def on_startup(dp: Dispatcher):
+    for user_id in config.admin_id:
+        await bot.send_message(user_id, "Привет! Я снова в сети и готов помогать вам с программированием на Python.")
+
 if __name__ == '__main__':
-    executor.start_polling(dp, skip_updates=True)
+    executor.start_polling(dp, on_startup=on_startup, skip_updates=True)

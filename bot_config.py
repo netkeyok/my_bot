@@ -3,7 +3,7 @@ import os
 
 bot_token = os.getenv('BOT_TOKEN')
 gpt_key = os.getenv('GPT_KEY')
-admin_id = '460379779'
+admin_id = ('460379779',)
 max_tokens = '4096'
 usage_check_frequency = '100'
 
