@@ -45,7 +45,7 @@ async def send(message: types.Message):
     try:
         update(messages, 'user', message.text)
         response = openai.ChatCompletion.create(
-            model="gpt-3.5-turbo",
+            model="gpt-3.5-turbo-1106",
             messages=messages,
         )
         await message.answer(response['choices'][0]['message']['content'])
